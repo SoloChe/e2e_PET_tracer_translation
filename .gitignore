@@ -1,0 +1,6 @@
+/data_PET*
+/AWS_S3_and_snowflake_setup.ipynb
+/logs*
+/.DS_Store
+/__pycache__
+/test*
