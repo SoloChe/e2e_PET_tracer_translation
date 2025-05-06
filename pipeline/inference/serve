@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env python
 
 # This file implements the scoring service shell. You don't necessarily need to modify it for various
 # algorithms. It starts nginx and gunicorn with the correct configurations and then simply waits until
@@ -19,8 +19,9 @@ import signal
 import subprocess
 import sys
 
-cpu_count = multiprocessing.cpu_count()
+print('Starting the inference server...')
 
+cpu_count = multiprocessing.cpu_count()
 model_server_timeout = os.environ.get('MODEL_SERVER_TIMEOUT', 60)
 model_server_workers = int(os.environ.get('MODEL_SERVER_WORKERS', cpu_count))
 

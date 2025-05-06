@@ -3,7 +3,7 @@
 /logs*
 /.DS_Store
 /__pycache__
-/test*
+/testing.ipynb
 /model*
 /local_testing/test*
 /local_testing/__pycache__

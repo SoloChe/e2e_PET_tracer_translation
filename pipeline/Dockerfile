@@ -1,4 +1,4 @@
-FROM python:3.10
+FROM --platform=linux/x86-64 python:3.10-slim
 
 
 RUN apt-get -y update && apt-get install -y --no-install-recommends \
@@ -23,5 +23,8 @@ ENV MODEL_PATH="/opt/ml/model"
 
 COPY inference /opt/program
 WORKDIR /opt/program
+
+RUN chmod +x serve
+
 
 
