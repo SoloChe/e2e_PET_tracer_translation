@@ -5,3 +5,7 @@
 /__pycache__
 /test*
 /model*
+/local_testing/test*
+/local_testing/__pycache__
+/local_testing/paired*
+/local_testing/Syn*

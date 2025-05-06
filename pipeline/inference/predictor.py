@@ -15,7 +15,9 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)
 logger.addHandler(logging.StreamHandler())
 
-model_path = "/opt/ml/model"
+logger.info("Starting the predictor...")
+
+model_path = os.environ['MODEL_PATH']
 
 # --- ScoringService: loads and uses your PyTorch model ---
 class ScoringService(object):

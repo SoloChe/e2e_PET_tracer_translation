@@ -19,6 +19,7 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && python3 get-pip.py && \
 ENV PYTHONUNBUFFERED=TRUE
 ENV PYTHONDONTWRITEBYTECODE=TRUE
 ENV PATH="/opt/program:${PATH}"
+ENV MODEL_PATH="/opt/ml/model"
 
 COPY inference /opt/program
 WORKDIR /opt/program
