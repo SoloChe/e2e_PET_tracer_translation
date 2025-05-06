@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set your algorithm name (ECR repo and image tag)
-algorithm_name="bai-pet"
+algorithm_name="bai-pet-v3"
 
 # Make sure `serve` is executable (optional — only if you have it)
 chmod +x inference/serve 2>/dev/null
