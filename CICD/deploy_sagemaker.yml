@@ -1,0 +1,49 @@
+name: Deploy to SageMaker
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      AWS_REGION: us-west-1                # Replace with your AWS region
+      IMAGE_NAME: bai-pet-v6               # Replace with your ECR image name
+      S3_BUCKET: my-sagemaker-models       # Replace with your S3 bucket
+      ENDPOINT_NAME: bai-pet-endpoint      # Replace with your SageMaker endpoint
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install dependencies
+        run: |
+          pip install boto3 sagemaker
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Build and push Docker image
+        run: |
+          chmod +x build_and_push.sh
+          ./build_and_push.sh
+
+      - name: Register and deploy model to SageMaker
+        run: |
+          python scripts/update_endpoint.py
+
+      - name: Run integration tests
+        run: |
+          python scripts/integration_test.py
